@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body, .jumbotron {
+            padding: 30px;
+        }
+        .text-giant{
+            font-size: 40px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="jumbotron">
+        <h1>How much do pies cost?</h1>
+        <form>
+        <label for="price">Price</label>
+        <input type="text" class="form-control" name="price" value="30">
+        <div class="form-group">
+            <label for="quantity">Quantity
+                 <span class="label label-primary quantity-label">1</span>
+                </label>
+            <input type="range" class="form-control" name="quantity" value="1" min="1" max="10">
+        </div>
+        </form>
+        <div class="text-right text-giant total"></div>
+
+    </div>
+
+
+    <!-- start of javascript -->
+    <script>
+        //grab everything we nees
+        const priceInput = document.querySelector('[name=price]');
+        const quantityInput = document.querySelector('[name=quantity]');
+        const total = document.querySelector('.total');
+        const quantityLabel = document.querySelector('.quantity-label');
+
+
+
+        //create the functions that we'll need
+        function calculatePieCost(){
+            const price = priceInput.value;
+            const quantity = quantityInput.value;
+            const cost = price*quantity;
+            console.log(cost);
+            total.innerText ='$'+ cost.toFixed(2);
+
+
+        }
+        function updateQuantityLabel(){
+             const quantity = quantityInput.value;
+             quantityLabel.innerText = quantity;
+        }
+        //on first run
+        calculatePieCost();
+
+        //and add our event listner
+        priceInput.addEventListener('input',calculatePieCost);
+        quantityInput.addEventListener('input', calculatePieCost);
+        quantityInput.addEventListener('input', updateQuantityLabel);
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
